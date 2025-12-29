@@ -54,7 +54,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const savedMode = localStorage.getItem("darkMode");
     if (savedMode === "enabled") {
       enableDarkMode();
+    } else if (savedMode === "disabled") {
+      disableDarkMode();
     }
+    // If no preference saved, default to light mode (do nothing)
   }
 
   function enableDarkMode() {
