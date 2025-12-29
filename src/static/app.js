@@ -610,6 +610,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // HTML escape function to prevent XSS
   function escapeHtml(text) {
+    if (text == null) return '';
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
@@ -618,11 +619,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Handle social sharing
   function handleShare(event) {
     const button = event.currentTarget;
+    // Get HTML entity decoded values from data attributes
     const activityName = button.dataset.activity;
     const description = button.dataset.description;
     const schedule = button.dataset.schedule;
     
-    // Create share text with sanitized content
+    // Create share text with sanitized content (data is already escaped in attributes)
     const shareText = `Check out ${activityName} at Mergington High School! ${description} Schedule: ${schedule}`;
     const shareUrl = window.location.href;
     
